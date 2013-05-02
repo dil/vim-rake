@@ -382,6 +382,7 @@ function! s:buffer_related() dict abort
     return s:project().first_file(
           \'test/'.bare.'_test.rb',
           \'spec/'.bare.'_spec.rb',
+          \'spec/'.s:sub(bare,'cp_domain/','').'_spec.rb',
           \'test/lib/'.bare.'_test.rb',
           \'spec/lib/'.bare.'_spec.rb',
           \'test/unit/'.bare.'_test.rb',
@@ -389,6 +390,7 @@ function! s:buffer_related() dict abort
   elseif self.name() =~# '^\(test\|spec\)/.*_\1\.rb$'
     return s:project().first_file(
       \'lib/'.self.name()[5:-9].'.rb',
+      \'lib/cp_domain/'.self.name()[5:-9].'.rb',
       \self.name()[5:-9].'.rb')
   elseif self.name() ==# 'Gemfile'
     return 'Gemfile.lock'
